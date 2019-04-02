@@ -5,36 +5,36 @@
 
 namespace utility
 {
+    template<typename T>
     class UIDRegistry
     {
 	typedef unsigned int uint;
 	
     private:
-	std::unordered_map<std::type_index, uint> uids;
-	unsigned int numRegistered;
-	
-    public:
-	UIDRegistry() :
-	    numRegistered(0)
-	{
-	    
-	}
+	std::unordered_map<T, uint> uIds;
+	uint numRegistered = 0;
 
-	template<class T>
-	void registerType()
+    public:
+
+	void enroll(const T& key)
 	{
-	    auto it = uids.find(typeid(T));
-	    if (it != uids.end())
+	    auto it = uIds.find(key);
+	    if (it != uIds.end())
 	    {
-		uids[typeid(T)] = numRegistered;
+		uIds[key] = numRegistered;
 		numRegistered++;
 	    }
 	}
 
-	template<class T>
-	uint getUID()
+	uint getUId(const T& key) const
 	{
-	    return uids[typeid(T)];
+	    auto it = uIds.find(key);
+	    if (it != uIds.end())
+	    {
+		return uIds[key];
+	    }
+
+	    return 0;
 	}
     };
 }

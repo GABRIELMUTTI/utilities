@@ -31,7 +31,7 @@ namespace utility
 	    registry[uid] = &creationFunction<T>;
 	}
 
-	TBase* create(TId uid, FuncArgs ... args)
+	virtual TBase* create(TId uid, FuncArgs ... args)
 	{
 	    auto it = registry.find(uid);
 	    if (it != registry.end())
