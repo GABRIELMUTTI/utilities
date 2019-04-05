@@ -5,7 +5,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace utility
+namespace utl
 {
     template<class T>
     class Event

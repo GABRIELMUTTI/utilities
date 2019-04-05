@@ -1,6 +1,6 @@
 #pragma once
 
-namespace utility
+namespace utl
 {
     template<class T>
     class IListener

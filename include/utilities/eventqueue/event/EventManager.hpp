@@ -7,7 +7,7 @@
 #include <vector>
 #include <typeindex>
 
-namespace utility
+namespace utl
 {
     class EventManager
     {

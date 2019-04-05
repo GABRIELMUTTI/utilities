@@ -6,7 +6,7 @@
 #include <queue>
 #include <string>
 
-namespace utility
+namespace utl
 {
     class MessageQueue
     {

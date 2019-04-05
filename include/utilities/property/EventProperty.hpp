@@ -2,7 +2,7 @@
 
 #include "../delegate/Event.hpp"
 
-namespace utility
+namespace utl
 {
     template<class EventType>
     class EventProperty

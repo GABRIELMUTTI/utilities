@@ -2,7 +2,7 @@
 
 #include <utility>
 
-namespace utility
+namespace utl
 {
     template<class T>
     class Delegate

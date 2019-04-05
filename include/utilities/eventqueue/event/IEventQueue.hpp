@@ -2,7 +2,7 @@
 
 #include "../../eventqueue/event/EventArgs.hpp"
 
-namespace utility
+namespace utl
 {
     class IEventQueue
     {

@@ -6,7 +6,7 @@
 
 #include <vector>
 
-namespace utility
+namespace utl
 {
     template<class EventType>
     class EventQueue : public IEventQueue

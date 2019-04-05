@@ -2,7 +2,7 @@
 
 #include "../factory/Factory.hpp"
 
-namespace utility
+namespace utl
 {
     template<class TBase, typename TId, class ... FuncArgs>
     class IRegister
