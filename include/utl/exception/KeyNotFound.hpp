@@ -2,12 +2,11 @@
 
 #include <exception>
 
-namespace utility
+namespace utl
 {
-    class KeyNotFoundException : public std::exception
+    class KeyNotFound : public std::exception
     {
     public:
-	
 	const char* what() const throw ()
 	{
 	    return "Key not found.";
