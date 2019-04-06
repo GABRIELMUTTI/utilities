@@ -33,7 +33,7 @@ namespace utl
 	template<typename T>
 	static Type getType()
 	{
-	    return Type(TypeId<T>::id);
+	    return Type(TypeId<T>::id, sizeof(T));
 	}
     };
 

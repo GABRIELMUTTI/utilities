@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdlib>
+
 namespace utl
 {
     using uint = unsigned int;
@@ -10,7 +12,9 @@ namespace utl
 	const uint id;
 
     public:
-	Type(uint id) : id(id) {}
+	const std::size_t size;
+	
+	Type(uint id, std::size_t size) : id(id), size(size) {}
 	
 	inline bool operator ==(const Type& other)
 	{
