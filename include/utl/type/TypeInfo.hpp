@@ -1,43 +1,44 @@
 #pragma once
 
+#include "Type.hpp"
+
 namespace utl
 {
     using uint = unsigned int;
-    
+
     class TypeInfo
     {
     private:
-	template<typename T>
-	struct Type
-	{
-	    static const uint id;
-	    static const char* name;
-	};
-	
 	static uint numRegistered;
-	
-    public:
-	template<typename T>
-	static const uint getId()
-	{
-	    return Type<T>::id;
-	}
 
 	template<typename T>
-	static const uint getName()
+	struct TypeId
 	{
-	    return Type<T>::name;
-	}
+	    static const uint id;
+	};
 
 	template<typename T>
 	static uint registerType()
 	{
 	    return numRegistered++;
 	}
+	
+    public:
+	template<typename T>
+	static const uint getId()
+	{
+	    return TypeId<T>::id;
+	}
+
+	template<typename T>
+	static Type getType()
+	{
+	    return Type(TypeId<T>::id);
+	}
     };
 
-    template<typename T>
-    const uint TypeInfo::Type<T>::id = TypeInfo::registerType<T>();
-
     uint TypeInfo::numRegistered = 0;
+    
+    template<typename T>
+    const uint TypeInfo::TypeId<T>::id = TypeInfo::registerType<T>();
 }
