@@ -52,7 +52,7 @@ namespace utl
 	template<class TDerived, class TBase>
 	static uint registerDerivedClass()
 	{
-	    return TypeId<TBase>::numDerivedClasses++;
+	    return TypeId<TBase>::numDerivedClasses()++;
 	}
 	
     public:
