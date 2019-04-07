@@ -10,12 +10,20 @@ namespace utl
 	friend TPool;
 	
     protected:
-	TPool& pool;
+	TPool* pool;
 	uint index;
 	bool validity;
 
     public:
-	Handle(const TPool& pool, uint index, bool validity) :
+	Handle() :
+	    pool(nullptr),
+	    index(0),
+	    validity(false)
+	{
+	    
+	}
+	
+	Handle(TPool* pool, uint index, bool validity) :
 	    pool(pool),
 	    index(index),
 	    validity(validity)

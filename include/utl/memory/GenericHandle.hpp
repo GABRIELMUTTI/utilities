@@ -8,7 +8,13 @@ namespace utl
     class GenericHandle : public Handle<TPool>
     {
     public:
-	GenericHandle(const TPool& pool, uint index, bool validity) :
+	GenericHandle() :
+	    Handle<TPool>()
+	{
+	    
+	}
+	
+	GenericHandle(TPool* pool, uint index, bool validity) :
 	    Handle<TPool>(pool, index, validity)
 	{
 	    

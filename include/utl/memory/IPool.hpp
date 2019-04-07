@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Handle.hpp"
+
 namespace utl
 {
     using uint = unsigned int;
