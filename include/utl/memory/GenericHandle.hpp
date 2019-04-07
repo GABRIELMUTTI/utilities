@@ -13,7 +13,13 @@ namespace utl
 	{
 	    
 	}
-	
+
+	GenericHandle(const Handle<TPool>& handle) :
+	    Handle<TPool>(handle)
+	{
+	    
+	}
+	    
 	GenericHandle(TPool* pool, uint index, bool validity) :
 	    Handle<TPool>(pool, index, validity)
 	{
