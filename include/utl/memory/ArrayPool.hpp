@@ -33,6 +33,11 @@ namespace utl
 	    
 	}
 
+	Handle<ArrayPool> getHandle(uint index)
+	{
+	    return handles[index];
+	}
+	
 	void* get(uint index) const
 	{
 	    return (void*)(&array[index]);
@@ -40,7 +45,12 @@ namespace utl
 
 	void add(uint index)
 	{
-	    count++;
+	    if (count == capacity)
+	    {
+		allocate(allocationStep);
+	    }
+
+	    handles[index] = Handle<ArrayPool>(this, index, true);
 	}
 	
         void remove(uint index)
@@ -54,7 +64,7 @@ namespace utl
 	    uint newCapacity = capacity + amount;
 	    uint* newArray = new uint[sizeof(uint) * objSize];
 	    
-	    handles.resize(newCapacity, Handle<ArrayPool>(*this, 0, false));
+	    handles.resize(newCapacity, Handle<ArrayPool>(nullptr, 0, false));
 	
 	    if (array != nullptr)
 	    {
@@ -74,7 +84,7 @@ namespace utl
         void deallocate(uint amount)
 	{
 	    int newCapacity = capacity - amount;
-	    handles.resize(newCapacity, Handle<ArrayPool>(*this, 0, false));
+	    handles.resize(newCapacity, Handle<ArrayPool>(nullptr, 0, false));
 
 	    if (newCapacity > 0)
 	    {
