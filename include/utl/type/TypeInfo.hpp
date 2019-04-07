@@ -40,7 +40,7 @@ namespace utl
 	
     public:
 	template<typename T>
-	static const uint getId()
+	static uint getId()
 	{
 	    return TypeId<T>::id;
 	}
@@ -52,7 +52,7 @@ namespace utl
 	}
 
 	template<class TDerived, class TBase>
-	static const uint getDerivedClassId()
+	static uint getDerivedClassId()
 	{
 	    static_assert(std::is_base_of<TBase, TDerived>::value, "TDerived does not inherit from TBase.");
 	    return DerivedClassId<TDerived, TBase>::id;
