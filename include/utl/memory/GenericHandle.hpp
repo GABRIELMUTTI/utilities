@@ -28,12 +28,12 @@ namespace utl
 	
 	inline TObj* operator ->()
 	{ 
-	    return static_cast<TObj*>(Handle<TPool>::pool.get(Handle<TPool>::index));
+	    return static_cast<TObj*>(Handle<TPool>::pool->get(Handle<TPool>::index));
 	}
 
 	inline TObj operator *()
 	{ 
-	    return *static_cast<TObj*>(Handle<TPool>::pool.get(Handle<TPool>::index));
+	    return *static_cast<TObj*>(Handle<TPool>::pool->get(Handle<TPool>::index));
 	}
     };
 }
