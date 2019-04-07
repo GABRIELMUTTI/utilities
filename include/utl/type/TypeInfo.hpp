@@ -62,12 +62,6 @@ namespace utl
 	    return TypeId<T>::id();
 	}
 
-	template<typename T>
-	static uint getNumDerivedClasses()
-	{
-	    return TypeId<T>::numDerivedClasses();
-	}
-
 	template<class TDerived, class TBase>
 	static uint getDerivedClassId()
 	{
