@@ -6,6 +6,6 @@ namespace utl
     class Injector
     {
     public:
-	virtual void inject(T& obj);
+	virtual void inject(T& obj) = 0;
     };
 }
