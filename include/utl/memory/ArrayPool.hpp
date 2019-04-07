@@ -62,9 +62,10 @@ namespace utl
 		{
 		    newArray[i] = array[i];
 		}
+
+		delete[] array;  
 	    }
 
-	    delete[] array;
 	    array = newArray;
 	    capacity = newCapacity;
 	}
@@ -77,24 +78,27 @@ namespace utl
 
 	    if (newCapacity > 0)
 	    {
-		uint* newArray = new uint[sizeof(uint) * objSize];
-
 		if (array != nullptr)
 		{
+		    uint* newArray = new uint[sizeof(uint) * objSize];
+		    
 		    for (int i = 0; i < newCapacity; i++)
 		    {
 			newArray[i] = array[i];
 		    }
+
+		    delete[] array;
+		    array = newArray;
 		}
-                    
-		delete[] array;
-		array = newArray;
 	    }
 	    else
 	    {
-		capacity = 0;
-		delete[] array;
-		array = nullptr;
+		if (array != nullptr)
+		{
+		    capacity = 0;
+		    delete[] array;
+		    array = nullptr;		    
+		}
 	    }
 	}
 	
