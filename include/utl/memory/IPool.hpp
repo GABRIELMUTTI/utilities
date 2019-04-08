@@ -5,11 +5,12 @@
 namespace utl
 {
     using uint = unsigned int;
-    
+
+    template<class T>
     class IPool
     {
     public:
-	void* get(uint index) const;
+	T& get(uint index) const;
 	void add(uint index);
         void remove(uint index);
 	

@@ -11,21 +11,20 @@
 namespace utl
 {
     using uint = unsigned int;
-    
-    class ArrayPool
+
+    template<typename T>
+    class ArrayPool : public IPool<T>
     {
     private: 
-	char* array;
-	std::size_t objSize;
+	T* array;
 	uint capacity;
 	uint count;
 	uint allocationStep;
 	std::vector<Handle<ArrayPool>> handles;
 	
     public:
-	ArrayPool(std::size_t objSize, uint allocationStep) :
+	ArrayPool(uint allocationStep) :
 	    array(nullptr),
-	    objSize(sizeof(uint) * objSize),
 	    capacity(0),
 	    count(0),
 	    allocationStep(allocationStep)
@@ -38,9 +37,9 @@ namespace utl
 	    return handles[index];
 	}
 	
-	void* get(uint index) const
+	T& get(uint index) const
 	{
-	    return (void*)(&array[index * objSize]);
+	    return &array[index];
 	}
 
 	void add(uint index)
@@ -62,7 +61,7 @@ namespace utl
         void allocate(uint amount)
 	{
 	    uint newCapacity = capacity + amount;
-	    char* newArray = new char[sizeof(char) * objSize];
+	    T* newArray = new T[newCapacity];
 	    
 	    handles.resize(newCapacity, Handle<ArrayPool>(nullptr, 0, false));
 	
@@ -90,7 +89,7 @@ namespace utl
 	    {
 		if (array != nullptr)
 		{
-		    char* newArray = new char[sizeof(char) * objSize];
+		    T* newArray = new T[newCapacity];
 		    
 		    for (int i = 0; i < newCapacity; i++)
 		    {
@@ -116,11 +115,10 @@ namespace utl
 	{
 	    if (indexA < capacity && indexB < capacity)
 	    {
-		char* tmp = new char[objSize];
+		T tmp = array[indexA];
+		array[indexA] = array[indexB];
+		array[indexB] = tmp;
 
-		memcpy(tmp, &array[indexB], objSize);
-		memcpy(&array[indexB], &array[indexA], objSize);
-		memcpy(&array[indexA], tmp, objSize);
 	    }
 	    else
 	    {
