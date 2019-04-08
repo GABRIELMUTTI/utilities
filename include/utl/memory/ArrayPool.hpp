@@ -15,7 +15,7 @@ namespace utl
     class ArrayPool
     {
     private: 
-	uint* array;
+	char* array;
 	std::size_t objSize;
 	uint capacity;
 	uint count;
@@ -40,7 +40,7 @@ namespace utl
 	
 	void* get(uint index) const
 	{
-	    return (void*)(&array[index]);
+	    return (void*)(&array[index * objSize]);
 	}
 
 	void add(uint index)
@@ -62,7 +62,7 @@ namespace utl
         void allocate(uint amount)
 	{
 	    uint newCapacity = capacity + amount;
-	    uint* newArray = new uint[sizeof(uint) * objSize];
+	    char* newArray = new char[sizeof(char) * objSize];
 	    
 	    handles.resize(newCapacity, Handle<ArrayPool>(nullptr, 0, false));
 	
@@ -90,7 +90,7 @@ namespace utl
 	    {
 		if (array != nullptr)
 		{
-		    uint* newArray = new uint[sizeof(uint) * objSize];
+		    char* newArray = new char[sizeof(char) * objSize];
 		    
 		    for (int i = 0; i < newCapacity; i++)
 		    {
@@ -116,7 +116,7 @@ namespace utl
 	{
 	    if (indexA < capacity && indexB < capacity)
 	    {
-		uint* tmp = new uint[objSize];
+		char* tmp = new char[objSize];
 
 		memcpy(tmp, &array[indexB], objSize);
 		memcpy(&array[indexB], &array[indexA], objSize);
