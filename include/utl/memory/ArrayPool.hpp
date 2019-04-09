@@ -13,7 +13,7 @@ namespace utl
     using uint = unsigned int;
 
     template<class TBase, class TObj>
-    class ArrayPool : public IPool<TBase>
+    class ArrayPool : public IPool<ArrayPool<TBase, TObj>, TBase>
     {
     private: 
 	TObj* array;

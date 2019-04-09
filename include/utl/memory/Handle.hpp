@@ -22,7 +22,7 @@ namespace utl
 	{
 	    
 	}
-	
+
 	Handle(TPool* pool, uint index, bool validity) :
 	    pool(pool),
 	    index(index),

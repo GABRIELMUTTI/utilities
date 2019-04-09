@@ -26,12 +26,12 @@ namespace utl
 	    
 	}
 	
-	inline TObj* operator ->()
+	inline TObj* operator ->() const
 	{ 
 	    return static_cast<TObj*>(Handle<TPool>::pool->get(Handle<TPool>::index));
 	}
 
-	inline TObj operator *()
+	inline TObj operator *() const
 	{ 
 	    return *static_cast<TObj*>(Handle<TPool>::pool->get(Handle<TPool>::index));
 	}
