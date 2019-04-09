@@ -12,11 +12,11 @@ namespace utl
 {
     using uint = unsigned int;
 
-    template<typename T>
-    class ArrayPool : public IPool<T>
+    template<class TBase, class TObj>
+    class ArrayPool : public IPool<TBase>
     {
     private: 
-	T* array;
+	TObj* array;
 	uint capacity;
 	uint count;
 	uint allocationStep;
@@ -37,7 +37,7 @@ namespace utl
 	    return handles[index];
 	}
 	
-	T& get(uint index) const
+	TBase& get(uint index) const
 	{
 	    return &array[index];
 	}
@@ -61,9 +61,9 @@ namespace utl
         void allocate(uint amount)
 	{
 	    uint newCapacity = capacity + amount;
-	    T* newArray = new T[newCapacity];
+	    TObj* newArray = new TObj[newCapacity];
 	    
-	    handles.resize(newCapacity, Handle<ArrayPool>(nullptr, 0, false));
+	    handles.resize(newCapacity, Handle<ArrayPool<TBase, TObj>>(nullptr, 0, false));
 	
 	    if (array != nullptr)
 	    {
@@ -89,7 +89,7 @@ namespace utl
 	    {
 		if (array != nullptr)
 		{
-		    T* newArray = new T[newCapacity];
+		    TObj* newArray = new TObj[newCapacity];
 		    
 		    for (int i = 0; i < newCapacity; i++)
 		    {
@@ -115,7 +115,7 @@ namespace utl
 	{
 	    if (indexA < capacity && indexB < capacity)
 	    {
-		T tmp = array[indexA];
+		TObj tmp = array[indexA];
 		array[indexA] = array[indexB];
 		array[indexB] = tmp;
 
