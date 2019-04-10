@@ -49,7 +49,7 @@ namespace utl
 		allocate(allocationStep);
 	    }
 
-	    handles[index] = Handle<TObj>(index, true);
+	    handles[index] = Handle<TBase>(index, true);
 	}
 	
         void remove(uint index)
