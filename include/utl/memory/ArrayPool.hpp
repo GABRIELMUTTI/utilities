@@ -67,6 +67,7 @@ namespace utl
 	    TObj* newArray = new TObj[newCapacity];
 	    
 	    handles.resize(newCapacity, Handle<TBase>(0, false));
+	    std::cout << "newCapacity: " << newCapacity << std::endl;
 	
 	    if (array != nullptr)
 	    {
@@ -87,7 +88,7 @@ namespace utl
 	{
 	    int newCapacity = capacity - amount;
 	    handles.resize(newCapacity, Handle<TBase>(0, false));
-	    std::cout << "newCapacity: " << newCapacity << std::endl;
+
 	    
 	    if (newCapacity > 0)
 	    {
