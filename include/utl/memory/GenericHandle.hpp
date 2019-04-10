@@ -38,7 +38,7 @@ namespace utl
 
 	inline TObj operator *() const
 	{ 
-	    return *static_cast<TObj*>(pool->get(Handle<TBase>::index));
+	    return *static_cast<TObj>(pool->get(Handle<TBase>::index));
 	}
     };
 }

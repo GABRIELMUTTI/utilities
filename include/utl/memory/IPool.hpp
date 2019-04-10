@@ -10,7 +10,7 @@ namespace utl
     class IPool
     {
     public:
-	T& get(uint index) const;
+	T* get(uint index) const;
 	const Handle<T>& getHandle(uint index) const;
 	
 	void add(uint index);

@@ -37,7 +37,7 @@ namespace utl
 	    return handles[index];
 	}
 	
-	TBase& get(uint index) const
+	TBase* get(uint index) const
 	{
 	    return &array[index];
 	}
