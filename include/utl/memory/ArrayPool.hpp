@@ -63,7 +63,7 @@ namespace utl
 	    uint newCapacity = capacity + amount;
 	    TObj* newArray = new TObj[newCapacity];
 	    
-	    handles.resize(newCapacity, Handle<TObj>(0, false));
+	    handles.resize(newCapacity, Handle<TBase>(0, false));
 	
 	    if (array != nullptr)
 	    {
@@ -83,7 +83,7 @@ namespace utl
         void deallocate(uint amount)
 	{
 	    int newCapacity = capacity - amount;
-	    handles.resize(newCapacity, Handle<TObj>(0, false));
+	    handles.resize(newCapacity, Handle<TBase>(0, false));
 
 	    if (newCapacity > 0)
 	    {
