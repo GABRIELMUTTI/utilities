@@ -51,7 +51,8 @@ namespace utl
 		allocate(allocationStep);
 	    }
 
-	    std::cout << "index: " << index << std::endl;
+	    count++;
+
 	    handles[index] = Handle<TBase>(index, true);
 	}
 	
@@ -67,7 +68,6 @@ namespace utl
 	    TObj* newArray = new TObj[newCapacity];
 	    
 	    handles.resize(newCapacity, Handle<TBase>(0, false));
-	    std::cout << "newCapacity: " << newCapacity << std::endl;
 	
 	    if (array != nullptr)
 	    {
