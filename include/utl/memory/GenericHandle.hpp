@@ -17,14 +17,14 @@ namespace utl
 	    
 	}
 
-	GenericHandle(const TPool& pool, const Handle<TBase>& handle) :
+	GenericHandle(const TPool* const pool, const Handle<TBase>& handle) :
 	    Handle<TBase>(handle),
 	    pool(&pool)
 	{
 	    
 	}
 	    
-	GenericHandle(const TPool& pool, uint index, bool validity) :
+	GenericHandle(const TPool* const pool, uint index, bool validity) :
 	    Handle<TBase>(index, validity),
 	    pool(&pool)
 	{
