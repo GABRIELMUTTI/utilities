@@ -42,11 +42,13 @@ namespace utl
 	    return validity;
 	}
 
+	/*
 	inline void operator =(const Handle<T>& other)
 	{
 	    index = other.index;
 	    validity = other.validity;
 	}
+	*/
 	
 	inline bool operator ==(const Handle<T>& other) const
 	{

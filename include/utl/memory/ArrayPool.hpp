@@ -20,7 +20,7 @@ namespace utl
 	uint capacity;
 	uint count;
 	uint allocationStep;
-	std::vector<Handle<TBase>>handles;
+	std::vector<Handle<TBase>> handles;
 	
     public:
 	ArrayPool(uint allocationStep) :
