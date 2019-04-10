@@ -6,6 +6,8 @@
 #include <cstring>
 #include <stdexcept>
 
+#include <iostream>
+
 #include "Handle.hpp"
 
 namespace utl
@@ -49,6 +51,7 @@ namespace utl
 		allocate(allocationStep);
 	    }
 
+	    std::cout << "index: " << index << std::endl;
 	    handles[index] = Handle<TBase>(index, true);
 	}
 	
@@ -84,7 +87,8 @@ namespace utl
 	{
 	    int newCapacity = capacity - amount;
 	    handles.resize(newCapacity, Handle<TBase>(0, false));
-
+	    std::cout << "newCapacity: " << newCapacity << std::endl;
+	    
 	    if (newCapacity > 0)
 	    {
 		if (array != nullptr)
