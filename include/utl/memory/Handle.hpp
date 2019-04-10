@@ -1,30 +1,27 @@
 #pragma once
 
+#include "IPool.hpp"
+
 namespace utl
 {
     using uint = unsigned int;
     
-    template<typename TPool>
+    template<class T>
     class Handle
-    {
-	friend TPool;
-	
+    {	
     protected:
-	TPool* pool;
 	uint index;
 	bool validity;
 
     public:
 	Handle() :
-	    pool(nullptr),
 	    index(0),
 	    validity(false)
 	{
 	    
 	}
 
-	Handle(TPool* pool, uint index, bool validity) :
-	    pool(pool),
+	Handle(uint index, bool validity) :
 	    index(index),
 	    validity(validity)
 	{
@@ -36,24 +33,23 @@ namespace utl
 	    return validity;
 	}
 
-	inline void operator =(const Handle<TPool>& other)
+	inline void operator =(const Handle<T>& other)
 	{
-	    pool = other.pool;
 	    index = other.index;
 	    validity = other.validity;
 	}
 	
-	inline bool operator ==(const Handle<TPool>& other) const
+	inline bool operator ==(const Handle<T>& other) const
 	{
-	    return (index == other.index) && (pool == other.pool);
+	    return (index == other.index) && (validity == other.validity);
 	}
 
-	inline bool operator >(const Handle<TPool>& other) const
+	inline bool operator >(const Handle<T>& other) const
 	{
 	    return index > other.index;
 	}
 
-	inline bool operator <(const Handle<TPool>& other) const
+	inline bool operator <(const Handle<T>& other) const
 	{
 	    return index < other.index;
 	}
