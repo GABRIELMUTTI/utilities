@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Handle.hpp"
+
 namespace utl
 {
     using uint = unsigned int;
@@ -9,9 +11,11 @@ namespace utl
     {
     public:
 	T& get(uint index) const;
+	const Handle<T>& getHandle(uint index) const;
+	
 	void add(uint index);
         void remove(uint index);
-
+	
         void allocate(uint amount);
         void deallocate(uint amount);
         void swap(uint indexA, uint indexB);

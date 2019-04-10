@@ -13,14 +13,14 @@ namespace utl
     using uint = unsigned int;
 
     template<class TBase, class TObj>
-    class ArrayPool : public IPool<ArrayPool<TBase, TObj>, TBase>
+    class ArrayPool : public IPool<ArrayPool<TBase, TObj>>
     {
     private: 
 	TObj* array;
 	uint capacity;
 	uint count;
 	uint allocationStep;
-	std::vector<Handle<ArrayPool>> handles;
+	std::vector<Handle<TBase>>handles;
 	
     public:
 	ArrayPool(uint allocationStep) :
@@ -32,7 +32,7 @@ namespace utl
 	    
 	}
 
-	Handle<ArrayPool> getHandle(uint index)
+	const Handle<TBase>& getHandle(uint index)
 	{
 	    return handles[index];
 	}
@@ -49,7 +49,7 @@ namespace utl
 		allocate(allocationStep);
 	    }
 
-	    handles[index] = Handle<ArrayPool>(this, index, true);
+	    handles[index] = Handle<TObj>(index, true);
 	}
 	
         void remove(uint index)
@@ -63,7 +63,7 @@ namespace utl
 	    uint newCapacity = capacity + amount;
 	    TObj* newArray = new TObj[newCapacity];
 	    
-	    handles.resize(newCapacity, Handle<ArrayPool<TBase, TObj>>(nullptr, 0, false));
+	    handles.resize(newCapacity, Handle<TObj>(0, false));
 	
 	    if (array != nullptr)
 	    {
@@ -83,7 +83,7 @@ namespace utl
         void deallocate(uint amount)
 	{
 	    int newCapacity = capacity - amount;
-	    handles.resize(newCapacity, Handle<ArrayPool>(nullptr, 0, false));
+	    handles.resize(newCapacity, Handle<TObj>(0, false));
 
 	    if (newCapacity > 0)
 	    {
