@@ -26,6 +26,17 @@ namespace utl
 
 	}
 
+	Handle(const Handle<T>& handle)
+	{
+	    index = handle.index;
+	    validity = handle.validity;
+	}
+
+	~Handle()
+	{
+	    
+	}
+
 	bool isValid() const
 	{
 	    return validity;

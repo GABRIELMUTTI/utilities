@@ -30,6 +30,12 @@ namespace utl
 	{
 	    
 	}
+
+	~GenericHandle()
+	{
+	    
+	}
+
 	
 	inline TObj* operator ->() const
 	{ 
