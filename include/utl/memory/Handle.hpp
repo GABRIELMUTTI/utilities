@@ -1,5 +1,7 @@
 #pragma once
 
+#include "IPool.hpp"
+
 namespace utl
 {
     using uint = unsigned int;
@@ -8,47 +10,31 @@ namespace utl
     class Handle
     {	
     protected:
+	IPool<T>* pool;
 	uint index;
 	bool validity;
 
     public:
 	Handle() :
+	    pool(nullptr),
 	    index(0),
 	    validity(false)
 	{
 	    
 	}
 
-	Handle(uint index, bool validity) :
+	Handle(IPool<T>& pool, uint index, bool validity) :
+	    pool(&pool),
 	    index(index),
 	    validity(validity)
 	{
 
 	}
 
-	Handle(const Handle<T>& handle)
-	{
-	    index = handle.index;
-	    validity = handle.validity;
-	}
-
-	~Handle()
-	{
-	    
-	}
-
 	bool isValid() const
 	{
 	    return validity;
 	}
-
-	/*
-	inline void operator =(const Handle<T>& other)
-	{
-	    index = other.index;
-	    validity = other.validity;
-	}
-	*/
 	
 	inline bool operator ==(const Handle<T>& other) const
 	{

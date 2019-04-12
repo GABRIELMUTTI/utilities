@@ -1,17 +1,17 @@
 #pragma once
 
-#include "Handle.hpp"
-
 namespace utl
 {
     using uint = unsigned int;
-
     template<class T>
+    class Handle;
+
+    template<class TObj>
     class IPool
     {
     public:
-	T* get(uint index) const;
-	const Handle<T>& getHandle(uint index) const;
+	TObj* get(uint index) const;
+	const Handle<TObj>& getHandle(uint index) const;
 	
 	void add(uint index);
         void remove(uint index);

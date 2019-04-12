@@ -7,9 +7,6 @@ namespace utl
     template<class TPool, class TBase, class TObj> 
     class GenericHandle : public Handle<TBase>
     {
-    private:
-	const TPool* const pool;
-	
     public:
 	GenericHandle() :
 	    Handle<TBase>()
@@ -17,34 +14,26 @@ namespace utl
 	    
 	}
 
-	GenericHandle(const TPool* const pool, const Handle<TBase>& handle) :
-	    Handle<TBase>(handle),
-	    pool(pool)
+	GenericHandle(const Handle<TBase>& handle) :
+	    Handle<TBase>(handle)
 	{
 	    
 	}
 	    
-	GenericHandle(const TPool* const pool, uint index, bool validity) :
-	    Handle<TBase>(index, validity),
-	    pool(pool)
+	GenericHandle(TPool& pool, uint index, bool validity) :
+	    Handle<TBase>(*pool, index, validity)
 	{
 	    
 	}
-
-	~GenericHandle()
-	{
-	    
-	}
-
 	
 	inline TObj* operator ->() const
 	{ 
-	    return static_cast<TObj*>(pool->get(Handle<TBase>::index));
+	    return static_cast<TObj*>(static_cast<TPool*>(Handle<TBase>::pool)->get(Handle<TBase>::index));
 	}
 
 	inline TObj operator *() const
 	{ 
-	    return *static_cast<TObj>(pool->get(Handle<TBase>::index));
+	    return *static_cast<TObj*>(static_cast<TPool*>(Handle<TBase>::pool)->get(Handle<TBase>::index));
 	}
     };
 }

@@ -6,10 +6,6 @@
 #include <cstring>
 #include <stdexcept>
 
-#include <iostream>
-
-#include "Handle.hpp"
-
 namespace utl
 {
     using uint = unsigned int;
@@ -53,7 +49,7 @@ namespace utl
 
 	    count++;
 
-	    handles[index] = Handle<TBase>(index, true);
+	    handles[index] = Handle<TBase>(this, index, true);
 	}
 	
         void remove(uint index)
@@ -67,7 +63,7 @@ namespace utl
 	    uint newCapacity = capacity + amount;
 	    TObj* newArray = new TObj[newCapacity];
 	    
-	    handles.resize(newCapacity, Handle<TBase>(0, false));
+	    handles.resize(newCapacity, Handle<TBase>());
 	
 	    if (array != nullptr)
 	    {
@@ -87,7 +83,7 @@ namespace utl
         void deallocate(uint amount)
 	{
 	    int newCapacity = capacity - amount;
-	    handles.resize(newCapacity, Handle<TBase>(0, false));
+	    handles.resize(newCapacity, Handle<TBase>());
 
 	    
 	    if (newCapacity > 0)
